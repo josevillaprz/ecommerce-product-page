@@ -7,9 +7,8 @@ import { IoClose } from "react-icons/io5";
 
 import styles from "./styles.module.css";
 
-export default function Navbar() {
+export default function Navbar({ product }) {
   const [showLinks, setShowLinks] = useState(false);
-  const [numInCart] = useState(2);
 
   return (
     <header className={styles.container}>
@@ -47,7 +46,7 @@ export default function Navbar() {
       <div className={styles.rightNav}>
         <button className={styles.cart}>
           <BsCart2 size={"24px"} />
-          <span>{numInCart}</span>
+          {product.qty !== 0 && <span>{product.qty}</span>}
         </button>
         <a href="/">
           <img src={avatar} alt="avatar" className={styles.avatar} />
