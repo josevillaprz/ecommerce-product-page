@@ -1,27 +1,32 @@
 import { useState } from "react";
 import AddBtn from "../../components/AddBtn/AddBtn";
+import Btn from "../../components/Btn/Btn";
+import Carousel from "../../components/Carousel/Carousel";
 import Navbar from "../../components/Navbar/Navbar";
+import styles from "./Product.module.css";
+import img from "../../images/image-product-1-thumbnail.jpg";
 
 export default function Product() {
   const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
 
   // SHOE DATA - this data would be requested from the server in a real application.
   const data = [
     {
       id: "e30d2648-974c-459e-bcbb-c529313b8c68",
       brand: "sneaker company",
-      name: "fall limited edition sneakers",
+      name: "Fall Limited Edition Sneakers",
       description:
         "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
       price: 125,
       previousPrice: 250,
       salePercentage: 50,
+      image: img,
     },
   ];
 
   const decrease = () => {
-    if (quantity === 1) return 1;
+    if (quantity === 1) return;
     const value = quantity - 1;
     setQuantity(value);
   };
@@ -31,10 +36,13 @@ export default function Product() {
     setQuantity(value);
   };
 
-  const addToCart = (itemId) => {
+  const addToCart = () => {
     // const
     setProduct({
-      id: itemId,
+      id: data[0].id,
+      name: data[0].name,
+      price: data[0].price,
+      image: data[0].image,
       qty: quantity,
     });
   };
@@ -42,25 +50,30 @@ export default function Product() {
   return (
     <>
       <Navbar product={product} />
-      <main>
-        <div>carousel</div>
-        <div>
-          <p>{data[0].brand}</p>
-          <h1>{data[0].name}</h1>
-          <p>{data[0].description}</p>
-          <div>
-            <h2>{data[0].price}</h2>
-            <p>{data[0].salePercentage}%</p>
+      <main className={styles.container}>
+        <section className={styles.carouselContainer}>
+          <Carousel />
+        </section>
+        <section className={styles.detailsContainer}>
+          <p className={styles.subHeading}>{data[0].brand}</p>
+          <h1 className={styles.heading}>{data[0].name}</h1>
+          <p className={styles.text}>{data[0].description}</p>
+          <div className={styles.priceContainer}>
+            <p className={styles.price}>${data[0].price.toFixed(2)}</p>
+            <p className={styles.discount}>{data[0].salePercentage}%</p>
+            <s className={styles.slashed}>
+              ${data[0].previousPrice.toFixed(2)}
+            </s>
           </div>
-          <div>
+          <div className={styles.btnGroup}>
             <AddBtn
               quantity={quantity}
               increaseHandler={increase}
               decreaseHandler={decrease}
             />
-            <button onClick={() => addToCart(data[0].id)}>add to cart</button>
+            <Btn text="Add to cart" handler={addToCart} />
           </div>
-        </div>
+        </section>
       </main>
     </>
   );

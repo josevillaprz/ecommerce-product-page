@@ -12,6 +12,10 @@ body, h1, h2, p, div, ul, li, button, a, header, img {
     border: none;
     outline: none;
     font-family: 'Kumbh Sans', sans-serif;
+    font-size: 1.6rem;
 }
 
 /* BASE 10 */
+html {
+    font-size: 62.5%;
+}
