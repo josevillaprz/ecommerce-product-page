@@ -1,6 +1,7 @@
 .container {
     box-sizing: border-box;
     width: 100%;
+    min-width: 400px;
     height: 350px;
     padding: 20px;
     display: flex;

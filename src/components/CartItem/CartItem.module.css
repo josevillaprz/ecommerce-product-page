@@ -39,4 +39,13 @@
 .button {
     margin-left: auto;
     color: hsl(231, 19%, 81%);
+    cursor: pointer;
+}
+
+.button:hover {
+    color: hsl(231, 11%, 66%)
+}
+
+.button:active {
+    color: hsl(231, 19%, 81%);
 }

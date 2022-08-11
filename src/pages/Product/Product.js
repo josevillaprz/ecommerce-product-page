@@ -5,6 +5,7 @@ import Carousel from "../../components/Carousel/Carousel";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Product.module.css";
 import img from "../../images/image-product-1-thumbnail.jpg";
+import Lightbox from "../../components/Lightbox/Lightbox";
 
 export default function Product() {
   const [quantity, setQuantity] = useState(1);
@@ -52,7 +53,8 @@ export default function Product() {
       <Navbar product={product} />
       <main className={styles.container}>
         <section className={styles.carouselContainer}>
-          <Carousel />
+          {/* <Carousel /> */}
+          <Lightbox />
         </section>
         <section className={styles.detailsContainer}>
           <p className={styles.subHeading}>{data[0].brand}</p>

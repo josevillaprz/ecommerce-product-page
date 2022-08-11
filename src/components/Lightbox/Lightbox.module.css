@@ -1,0 +1,26 @@
+.container {
+    max-width: 500px;
+}
+
+.thumbnailContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container>img {
+    border-radius: 12px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.thumbnailContainer img {
+    width: 100px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: all .2s ease-out;
+}
+
+.active {
+    filter: opacity(50%);
+    transform: translateY(-5px);
+}
