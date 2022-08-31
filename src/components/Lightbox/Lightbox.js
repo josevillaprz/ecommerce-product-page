@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { imgData } from "../../util/imgData";
+import Modal from "../Modal/Modal";
 import styles from "./Lightbox.module.css";
 
-const Lightbox = () => {
+const Lightbox = ({ images, toggleModal, showModal }) => {
   const [currentImg, setCurrentImg] = useState(0);
 
   const clickHandler = (img, i) => {
@@ -11,9 +11,14 @@ const Lightbox = () => {
 
   return (
     <div className={styles.container}>
-      <img src={imgData[currentImg].img} alt="product" />
+      {showModal && <Modal toggleModal={toggleModal} images={images} />}
+      <img
+        src={images[currentImg].img}
+        alt="product"
+        onClick={() => toggleModal()}
+      />
       <div className={styles.thumbnailContainer}>
-        {imgData.map((img, i) => (
+        {images.map((img, i) => (
           <img
             key={i}
             src={img.thumbnail}

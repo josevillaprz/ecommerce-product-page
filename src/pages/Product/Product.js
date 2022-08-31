@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddBtn from "../../components/AddBtn/AddBtn";
 import Btn from "../../components/Btn/Btn";
 import Carousel from "../../components/Carousel/Carousel";
@@ -6,10 +6,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Product.module.css";
 import img from "../../images/image-product-1-thumbnail.jpg";
 import Lightbox from "../../components/Lightbox/Lightbox";
+import { imgData } from "../../util/imgData";
 
 export default function Product() {
   const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState([]);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 820);
+  const [showModal, setShowModal] = useState(false);
 
   // SHOE DATA - this data would be requested from the server in a real application.
   const data = [
@@ -25,6 +28,22 @@ export default function Product() {
       image: img,
     },
   ];
+
+  const updateMedia = () => {
+    setIsDesktop(window.innerWidth > 820);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    // clean up when unmounting
+    return () => {
+      window.removeEventListener("resize", updateMedia);
+    };
+  }, []);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const decrease = () => {
     if (quantity === 1) return;
@@ -53,8 +72,15 @@ export default function Product() {
       <Navbar product={product} />
       <main className={styles.container}>
         <section className={styles.carouselContainer}>
-          {/* <Carousel /> */}
-          <Lightbox />
+          {isDesktop ? (
+            <Lightbox
+              images={imgData}
+              toggleModal={toggleModal}
+              showModal={showModal}
+            />
+          ) : (
+            <Carousel />
+          )}
         </section>
         <section className={styles.detailsContainer}>
           <p className={styles.subHeading}>{data[0].brand}</p>

@@ -15,6 +15,10 @@ body, h1, h2, p, div, ul, li, button, a, header, img {
     font-size: 1.6rem;
 }
 
+body {
+    min-height: 100vh;
+}
+
 /* BASE 10 */
 html {
     font-size: 62.5%;
