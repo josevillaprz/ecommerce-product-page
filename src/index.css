@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
 
 /* CSS RESET */
-body, h1, h2, p, div, ul, li {
+body, h1, h2, p, div, ul, li, button, a, header, img {
     margin: 0;
     padding: 0;
-    height: 0;
-    width: 0;
     text-decoration: none;
     list-style: none;
-    color: #000
+    color: hsl(219, 9%, 45%);
+    cursor: default;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Kumbh Sans', sans-serif;
 }
 
 /* BASE 10 */
