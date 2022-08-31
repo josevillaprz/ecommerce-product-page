@@ -1,0 +1,30 @@
+.container {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 460px;
+    z-index: 5;
+    top: 70px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 10px;
+    box-shadow: 0 15px 20px rgba(72, 72, 75, 0.3);
+}
+
+.itemsContainer {
+    padding-top: 20px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid hsl(229, 42%, 90%)
+}
+
+.title {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #000;
+}

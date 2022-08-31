@@ -1,15 +1,15 @@
 import { useState } from "react";
 import logo from "../../images/logo.svg";
 import avatar from "../../images/image-avatar.png";
+import Cart from "../Cart/Cart";
 import { BsCart2 } from "react-icons/bs";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-
 import styles from "./styles.module.css";
 
-export default function Navbar() {
+export default function Navbar({ product }) {
   const [showLinks, setShowLinks] = useState(false);
-  const [numInCart] = useState(2);
+  const [displayCart, setDisplayCart] = useState(false);
 
   return (
     <header className={styles.container}>
@@ -45,13 +45,17 @@ export default function Navbar() {
         </nav>
       </div>
       <div className={styles.rightNav}>
-        <button className={styles.cart}>
+        <button
+          className={styles.cart}
+          onClick={() => setDisplayCart(!displayCart)}
+        >
           <BsCart2 size={"24px"} />
-          <span>{numInCart}</span>
+          {product.qty !== 0 && <span>{product.qty}</span>}
         </button>
         <a href="/">
           <img src={avatar} alt="avatar" className={styles.avatar} />
         </a>
+        {displayCart && <Cart product={product} />}
       </div>
     </header>
   );
